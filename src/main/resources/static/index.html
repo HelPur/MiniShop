@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Mini Shop</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+<main class="shell">
+    <aside class="sidebar">
+        <div class="brand">
+            <span class="brand-mark">MS</span>
+            <div>
+                <strong>Mini Shop</strong>
+                <small>Spring Boot 电商练习平台</small>
+            </div>
+        </div>
+
+        <section class="panel account-panel">
+            <div class="panel-title">
+                <span>当前用户</span>
+                <strong id="userBadge">alice</strong>
+            </div>
+            <div class="segmented" aria-label="切换用户">
+                <button class="segment active" data-user="2">买家</button>
+                <button class="segment" data-user="1">管理员</button>
+            </div>
+            <dl class="kv">
+                <div><dt>Header</dt><dd id="headerPreview">X-User-Id: 2</dd></div>
+                <div><dt>数据库</dt><dd>H2 / JPA</dd></div>
+                <div><dt>缓存</dt><dd>Redis Hash 示例</dd></div>
+            </dl>
+        </section>
+
+        <nav class="quick-links" aria-label="快捷入口">
+            <a href="/h2-console" target="_blank">H2 Console</a>
+            <a href="/api/products" target="_blank">商品 JSON</a>
+            <a href="/README.md" target="_blank">README</a>
+        </nav>
+    </aside>
+
+    <section class="workspace">
+        <header class="hero">
+            <div>
+                <p class="eyebrow">MVC · DI · Transaction · AOP · Redis · RocketMQ</p>
+                <h1>轻量电商工作台</h1>
+                <p class="hero-copy">从商品浏览到购物车、下单、支付回调和订单流转，所有核心练习点都串在一个可操作页面里。</p>
+            </div>
+            <div class="hero-stats">
+                <div><strong id="productCount">0</strong><span>商品</span></div>
+                <div><strong id="cartCount">0</strong><span>购物车</span></div>
+                <div><strong id="orderCount">0</strong><span>订单</span></div>
+            </div>
+        </header>
+
+        <section class="board">
+            <div class="products-area">
+                <div class="section-heading">
+                    <div>
+                        <span class="dot"></span>
+                        <h2>商品管理</h2>
+                    </div>
+                    <button class="ghost-button" id="refreshBtn">刷新</button>
+                </div>
+                <div class="product-grid" id="productGrid"></div>
+            </div>
+
+            <aside class="checkout-area">
+                <section class="panel">
+                    <div class="section-heading tight">
+                        <div>
+                            <span class="dot green"></span>
+                            <h2>购物车</h2>
+                        </div>
+                        <strong id="cartTotal">¥0.00</strong>
+                    </div>
+                    <div class="cart-list" id="cartList"></div>
+                    <button class="primary-button" id="createOrderBtn">生成订单</button>
+                </section>
+
+                <section class="panel">
+                    <div class="section-heading tight">
+                        <div>
+                            <span class="dot amber"></span>
+                            <h2>支付模块</h2>
+                        </div>
+                    </div>
+                    <div class="payment-methods" id="paymentMethods">
+                        <button class="pay-method active" data-method="ALIPAY">支付宝</button>
+                        <button class="pay-method" data-method="WECHAT">微信</button>
+                        <button class="pay-method" data-method="BANK_CARD">银行卡</button>
+                    </div>
+                    <button class="secondary-button" id="payBtn">发起支付并回调</button>
+                </section>
+
+                <section class="panel">
+                    <div class="section-heading tight">
+                        <div>
+                            <span class="dot red"></span>
+                            <h2>订单状态</h2>
+                        </div>
+                    </div>
+                    <div class="order-list" id="orderList"></div>
+                    <div class="button-row">
+                        <button class="ghost-button" id="shipBtn">管理员发货</button>
+                        <button class="ghost-button" id="receiveBtn">用户收货</button>
+                    </div>
+                </section>
+            </aside>
+        </section>
+
+        <section class="activity">
+            <div class="section-heading tight">
+                <div>
+                    <span class="dot blue"></span>
+                    <h2>操作日志</h2>
+                </div>
+            </div>
+            <ol id="activityLog"></ol>
+        </section>
+    </section>
+</main>
+
+<template id="emptyTemplate">
+    <div class="empty-state">
+        <strong>暂无数据</strong>
+        <span>完成一次操作后这里会自动更新。</span>
+    </div>
+</template>
+
+<script src="/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,9 @@
+target/
+.idea/
+.vscode/
+*.iml
+*.log
+apache-maven-3.9.9/
+apache-maven.zip
+mini-shop-run.log
+mini-shop-run.err.log
